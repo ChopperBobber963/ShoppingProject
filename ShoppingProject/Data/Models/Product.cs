@@ -21,9 +21,6 @@ namespace ShoppingProject.Data.Models
         [Required]
         public string ImageURL { get; set; }
 
-        [Required]
-        public string PictureURL { get; set; }
-
         public string ProductType { get; set; }
     }
 }
