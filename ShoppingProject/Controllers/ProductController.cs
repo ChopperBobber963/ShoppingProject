@@ -39,12 +39,12 @@ namespace ShoppingProject.Controllers
             {
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price,
                 ImageURL = product.ImageURL,
+                Price = product.Price,
                 ProductType = product.ProductType
             };
-            _dbContext.Products.Add(productData);
-            _dbContext.SaveChanges();
+            _productService.Add(productData);
+            
             return RedirectToAction("Index", "Home");
         }
     }

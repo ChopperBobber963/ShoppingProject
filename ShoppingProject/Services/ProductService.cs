@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingProject.Data;
 using ShoppingProject.Data.Models;
+using ShoppingProject.Models;
 
 namespace ShoppingProject.Services
 {
