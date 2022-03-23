@@ -64,7 +64,7 @@ namespace ShoppingProject.Controllers
             };
             _productService.Add(productData);
             
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(All));
         }
     }
 }
