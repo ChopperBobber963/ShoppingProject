@@ -18,8 +18,27 @@ namespace ShoppingProject.Controllers
 
         public async Task<IActionResult> All()
         {
-            var data = await _productService.GetAll();
-            return View(data);
+            var productsQuery = _dbContext.Products.AsQueryable();
+
+            
+
+            var products = productsQuery
+                .OrderByDescending(pt => pt.Id)
+                .Select(p => new AllProductsForm
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Price = p.Price,
+                    ImageURL = p.ImageURL,
+                    ProductType = p.ProductType
+                })
+                .ToList();
+
+            return View(new ProductListingModel
+            {
+                Products = products
+            });
         }
 
         public IActionResult Add()
