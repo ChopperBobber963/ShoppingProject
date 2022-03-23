@@ -10,6 +10,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ShoppingDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        options.AppId = "291233079790152";
+        options.AppSecret = "eb2db14c8c4931f44759ed94ce62cc39";
+    });
+
 builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

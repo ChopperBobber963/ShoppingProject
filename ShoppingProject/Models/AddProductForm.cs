@@ -5,6 +5,7 @@ namespace ShoppingProject.Models
 
     public class AddProductForm
     {
+        public int Id { get; set; }
          
         [Required]
         [StringLength(ProductNameMaxLength,
