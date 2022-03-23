@@ -31,14 +31,17 @@ namespace ShoppingProject.Services
             return result;
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = await _dbContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+            return result;
         }
 
-        public Product Update(int id, Product product)
+        public async Task<Product> Update(int id, Product newProduct)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(newProduct);
+            await _dbContext.SaveChangesAsync();
+            return newProduct;
         }
     }
 }

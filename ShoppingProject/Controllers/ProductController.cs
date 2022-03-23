@@ -66,5 +66,44 @@ namespace ShoppingProject.Controllers
             
             return RedirectToAction(nameof(All));
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var productDetails = await _productService.GetById(id);
+            if(productDetails == null) return NotFound();
+            var gosho = new AddProductForm() 
+            { 
+                Id = productDetails.Id,
+                Name = productDetails.Name,
+                Description = productDetails.Description,
+                ImageURL= productDetails.ImageURL,
+                Price = productDetails.Price,
+                ProductType = productDetails.ProductType
+                
+            };
+            return View(gosho);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AllProductsForm product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+            var productData = new Product
+            {
+                Id = id,
+                Name = product.Name,
+                Description = product.Description,
+                ImageURL = product.ImageURL,
+                Price = product.Price,
+                ProductType = product.ProductType
+            };
+
+            await _productService.Update(id, productData);
+            return RedirectToAction(nameof(All));
+        }
     }
 }

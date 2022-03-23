@@ -1,5 +1,7 @@
 ﻿@model ProductListingModel
-
+@{
+    ViewData["Title"] = "All";
+}
 <div class = "row">
   @foreach(var product in Model.Products)
   {
@@ -8,8 +10,8 @@
     <div class="card-body text-center">
     <h5 class="card-title text-center">@product.Name</h5>
     <p class="card-text">@product.Description</p>
-    <a asp-controller="Product" asp-action= "Details" asp-route-id =@product.Id class="btn btn-primary">$@product.Price</a>
-    <a asp-controller="Product" asp-action= "Edit" class="btn btn-warning">Edit</a>
+    <a asp-controller="Product" asp-action= "Details" asp-route-id=@product.Id class="btn btn-primary">$@product.Price</a>
+    <a asp-controller="Product" asp-action= "Edit" asp-route-id=@product.Id class="btn btn-warning">Edit</a>
     </div>
     </div>
   }
