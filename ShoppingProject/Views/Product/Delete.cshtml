@@ -1,42 +1,41 @@
 ﻿@model AddProductForm
 
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "Delete Product";
 }
-<form method="post" asp-controller="Product" asp-action="Edit">
 
-    <input asp-for="Id" hidden />
-    <div class="row">
-        <div class="col-6 offset-3">
-            <h2 class="heading-margin text-center">Add Product</h2>
+<div class="row">
+    <div class="col-6 offset-3">
+        <h2 class="heading-margin text-center">Add Product</h2>
+        
+    
+        <form method="post" asp-action="DeleteConfirmed" asp-controller="Product">
+
+            <input asp-for="Id" hidden />
             <div>
                 <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" placeholder="PS4, Xbox One">
+                <input asp-for="Name" class="form-control" readonly>
                 <span asp-validation-for="Name" class="small text-danger"></span>
             </div>
-
             <div>
                 <label asp-for="Description"></label>
-                <textarea asp-for="Description" class="form-control" placeholder="Best game ever !!">
+                <textarea asp-for="Description" class="form-control" readonly>
                 <span asp-validation-for="Description" class="small text-danger"></span>
         </textarea>
             </div>
-
             <div>
                 <label asp-for="ImageURL"></label>
-                <input asp-for="ImageURL" class="form-control" placeholder="Picture URL">
+                <input asp-for="ImageURL" class="form-control" readonly>
                 <span asp-validation-for="ImageURL" class="small text-danger"></span>
             </div>
-
             <div>
                 <label asp-for="Price"></label>
-                <input asp-for="Price" class="form-control" placeholder="$25.99">
+                <input asp-for="Price" class="form-control" readonly>
                 <span asp-validation-for="Price" class="small text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="ProductType">Product Type</label>
-                <select asp-for="ProductType" class="form-control">
+                <select asp-for="ProductType" disabled class="form-control">
                     <option>Video Games</option>
                     <option>Books</option>
                     <option>Smartphones</option>
@@ -44,9 +43,5 @@
                     <option>Movies</option>
                     <option>Music</option>
                 </select>
-                <input class="btn btn-outline-warning" type="submit" value="Edit" />
-            </div>
-
-        </div>
-    </div>
-</form>
+                <input class="btn btn-outline-danger" type="submit" value="Delete" />
+        </form>

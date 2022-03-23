@@ -20,9 +20,11 @@ namespace ShoppingProject.Services
             _dbContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
+            _dbContext.Products.Remove(result);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Product>> GetAll()
@@ -37,7 +39,7 @@ namespace ShoppingProject.Services
             return result;
         }
 
-        public async Task<Product> Update(int id, Product newProduct)
+        public async Task<Product> Update(Product newProduct)
         {
             _dbContext.Update(newProduct);
             await _dbContext.SaveChangesAsync();

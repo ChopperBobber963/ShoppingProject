@@ -11,8 +11,8 @@ namespace ShoppingProject.Services
 
         void Add(Product product);
 
-        Task<Product> Update(int id, Product newProduct);
+        Task<Product> Update(Product newProduct);
 
-        void Delete(int id);
+        Task Delete(int id);
     }
 }

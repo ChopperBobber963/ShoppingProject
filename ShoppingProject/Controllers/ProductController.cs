@@ -6,7 +6,7 @@ using ShoppingProject.Services;
 
 namespace ShoppingProject.Controllers
 {
-    public class ProductController:Controller
+    public class ProductController : Controller
     {
         private readonly IProductService _productService;
         private readonly ShoppingDbContext _dbContext;
@@ -20,7 +20,7 @@ namespace ShoppingProject.Controllers
         {
             var productsQuery = _dbContext.Products.AsQueryable();
 
-            
+
 
             var products = productsQuery
                 .OrderByDescending(pt => pt.Id)
@@ -63,46 +63,82 @@ namespace ShoppingProject.Controllers
                 ProductType = product.ProductType
             };
             _productService.Add(productData);
-            
+
             return RedirectToAction(nameof(All));
         }
 
-        [HttpGet("[action]/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
             var productDetails = await _productService.GetById(id);
-            if(productDetails == null) return NotFound();
-            var gosho = new AddProductForm() 
-            { 
+            
+            if (productDetails == null)
+            {
+                return NotFound(); 
+            }
+
+            var productForm = new AddProductForm()
+            {
                 Id = productDetails.Id,
                 Name = productDetails.Name,
                 Description = productDetails.Description,
-                ImageURL= productDetails.ImageURL,
+                ImageURL = productDetails.ImageURL,
                 Price = productDetails.Price,
                 ProductType = productDetails.ProductType
-                
+
             };
-            return View(gosho);
+
+            return View(productForm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, AllProductsForm product)
+        public async Task<IActionResult> Edit(AllProductsForm product)
         {
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
-            var productData = new Product
-            {
-                Id = id,
-                Name = product.Name,
-                Description = product.Description,
-                ImageURL = product.ImageURL,
-                Price = product.Price,
-                ProductType = product.ProductType
-            };
+            var productData = _dbContext.Products.Find(product.Id);
 
-            await _productService.Update(id, productData);
+            if (productData == null)
+            {
+                return NotFound();
+            }
+
+            productData.Name = product.Name;
+            productData.Description = product.Description;
+            productData.ImageURL = product.ImageURL;
+            productData.Price = product.Price;
+            productData.ProductType = product.ProductType;
+
+            await _productService.Update(productData);
+            return RedirectToAction("All", "Product");
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var productDetails = await _productService.GetById(id);
+            if (productDetails == null) return NotFound();
+            var gosho = new AddProductForm()
+            {
+                Id = productDetails.Id,
+                Name = productDetails.Name,
+                Description = productDetails.Description,
+                ImageURL = productDetails.ImageURL,
+                Price = productDetails.Price,
+                ProductType = productDetails.ProductType
+
+            };
+            return View(gosho);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> DeleteConfirmed([FromForm] int id)
+        {
+            var productDetails = await _productService.GetById(id);
+            if (productDetails == null) return NotFound();
+
+            await _productService.Delete(id);
             return RedirectToAction(nameof(All));
         }
     }
