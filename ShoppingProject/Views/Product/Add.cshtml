@@ -9,6 +9,9 @@
         <h2 class="heading-margin text-center">Add Product</h2>
         <form method = "post" asp-action="Add">
   <div>
+      <div>
+      <img id="ImageURLPreview"/>
+      </div>
     <label asp-for="Name"></label>
     <input asp-for="Name" class="form-control" placeholder="PS4, Xbox One">
     <span asp-validation-for = "Name" class="small text-danger"></span>
@@ -19,6 +22,7 @@
         <span asp-validation-for = "Description" class="small text-danger"></span>
         </textarea>
   </div>
+  
   <div>
     <label asp-for="ImageURL"></label>
     <input asp-for="ImageURL" class="form-control" placeholder="Picture URL">
@@ -40,4 +44,15 @@
       <option>Music</option>
     </select>
   <input class = "btn btn-outline-success" type="submit" value="Save" />
+  </div>
+ 
 </form>
+
+@section Scripts{
+    <script>
+          $("#ImageURL").on("change", function (){
+             var output = document.getElementById('ImageURLPreview');
+             output.src = $(this).val();
+          }) 
+    </script>
+}

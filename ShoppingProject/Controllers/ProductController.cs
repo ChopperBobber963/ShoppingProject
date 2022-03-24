@@ -20,8 +20,6 @@ namespace ShoppingProject.Controllers
         {
             var productsQuery = _dbContext.Products.AsQueryable();
 
-
-
             var products = productsQuery
                 .OrderByDescending(pt => pt.Id)
                 .Select(p => new AllProductsForm
