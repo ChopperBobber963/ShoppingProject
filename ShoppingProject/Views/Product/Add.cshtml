@@ -4,55 +4,57 @@
     ViewData["Title"] = "Add a new Product";
 }
 
-<div class = "row">
-    <div class = "col-6 offset-3">
+<div class="row">
+    <div class="col-6 offset-3">
         <h2 class="heading-margin text-center">Add Product</h2>
-        <form method = "post" asp-action="Add">
-  <div>
-      <div>
-      <img id="ImageURLPreview" class = "center"/>
-      </div>
-    <label asp-for="Name"></label>
-    <input asp-for="Name" class="form-control" placeholder="PS4, Xbox One">
-    <span asp-validation-for = "Name" class="small text-danger"></span>
-  </div>
-  <div>
-    <label asp-for="Description"></label>
-    <textarea asp-for="Description" class="form-control" placeholder="Best game ever !!">
-        <span asp-validation-for = "Description" class="small text-danger"></span>
+        <form method="post" asp-action="Add">
+            <div>
+                <div>
+                    <img id="ImageURLPreview" class="center" />
+                </div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" placeholder="PS4, Xbox One">
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" placeholder="Best game ever !!">
+                <span asp-validation-for="Description" class="small text-danger"></span>
         </textarea>
-  </div>
-  
-  <div>
-    <label asp-for="ImageURL"></label>
-    <input asp-for="ImageURL" class="form-control" placeholder="Picture URL">
-    <span asp-validation-for = "ImageURL" class="small text-danger"></span>
-  </div>
-  <div>
-    <label asp-for="Price"></label>
-    <input asp-for="Price" class="form-control" placeholder="$25.99">
-    <span asp-validation-for = "Price" class="small text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="ProductType">Product Type</label>
-    <select asp-for="ProductType" class="form-control" >
-      <option>Video Games</option>
-      <option>Books</option>
-      <option>Smartphones</option>
-      <option>Laptops</option>
-      <option>Movies</option>
-      <option>Music</option>
-    </select>
-  <input class = "btn btn-outline-success" type="submit" value="Save" />
-  </div>
- 
-</form>
+            </div>
+
+            <div>
+                <label asp-for="ImageURL"></label>
+                <input asp-for="ImageURL" class="form-control" placeholder="Picture URL">
+                <span asp-validation-for="ImageURL" class="small text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" placeholder="$25.99">
+                <span asp-validation-for="Price" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductType">Product Type</label>
+                <select asp-for="ProductType" class="form-control">
+                    <option>Video Games</option>
+                    <option>Books</option>
+                    <option>Smartphones</option>
+                    <option>Laptops</option>
+                    <option>Movies</option>
+                    <option>Music</option>
+                </select>
+                <input class="btn btn-outline-success" type="submit" value="Save" />
+            </div>
+
+        </form>
+    </div>
+</div>
 
 @section Scripts{
-    <script>
-          $("#ImageURL").on("change", function (){
-             var output = document.getElementById('ImageURLPreview');
-             output.src = $(this).val();
-          }) 
-    </script>
+<script>
+    $("#ImageURL").on("change", function (){
+       var output = document.getElementById('ImageURLPreview');
+       output.src = $(this).val();
+    })
+</script>
 }

@@ -13,6 +13,9 @@
 
             <input asp-for="Id" hidden />
             <div>
+                <img id="ImageURLPreview" class="center" />
+            </div>
+            <div>
                 <label asp-for="Name"></label>
                 <input asp-for="Name" class="form-control" readonly>
                 <span asp-validation-for="Name" class="small text-danger"></span>
@@ -48,3 +51,11 @@
         </form>
     </div>
 </div>
+@section Scripts{
+<script>
+    $("#ImageURL").on("change", function (){
+       var output = document.getElementById('ImageURLPreview');
+       output.src = $(this).val();
+    })
+</script>
+}

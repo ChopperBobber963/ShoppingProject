@@ -16,9 +16,15 @@ namespace ShoppingProject.Controllers
             _dbContext = dbContext;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(string search)
         {
             var productsQuery = _dbContext.Products.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                productsQuery = productsQuery.Where(p =>
+                p.Name.ToLower().Contains(search.ToLower()));
+            }
 
             var products = productsQuery
                 .OrderByDescending(pt => pt.Id)
@@ -35,7 +41,8 @@ namespace ShoppingProject.Controllers
 
             return View(new ProductListingModel
             {
-                Products = products
+                Products = products,
+                Search = search
             });
         }
 

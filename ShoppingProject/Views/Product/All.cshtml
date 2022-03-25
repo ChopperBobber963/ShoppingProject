@@ -2,6 +2,15 @@
 @{
     ViewData["Title"] = "All";
 }
+<form method = "get">
+    <div class = "row mb-5">
+        <div class = "form-group col-md-4">
+             <label asp-for="Search"></label>
+             <input asp-for="Search" class="form-control" placeholder="PS4, Xbox One">
+        </div>
+    </div>
+</form>
+
 <div class = "row">
   @foreach(var product in Model.Products)
   {
