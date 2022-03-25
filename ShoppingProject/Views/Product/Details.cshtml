@@ -1,0 +1,18 @@
+﻿@model AllProductsForm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="col-md-4 text-center rounded mx-auto d-block">
+    <div class="card mb-4 bgcolor-gray border-none">
+        <img src="@Model.ImageURL" class="card-img-top" alt="@Model.Name">
+        <div class="card-body">
+            <h5 class="card-title text-center">@Model.Name</h5>
+            <p class="card-text text-center">$@Model.Price</p>
+        </div>
+    </div>
+</div>
+<div class="text-center mb-3">
+    <span class="text-small text-dark">@Model.Description</span>
+</div>

@@ -14,5 +14,7 @@ namespace ShoppingProject.Services
         Task<Product> Update(Product newProduct);
 
         Task Delete(int id);
+
+        AllProductsForm Details(int id);
     }
 }

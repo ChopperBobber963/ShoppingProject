@@ -27,6 +27,22 @@ namespace ShoppingProject.Services
             await _dbContext.SaveChangesAsync();
         }
 
+        public AllProductsForm Details(int id)
+        {
+            return _dbContext.Products
+                           .Where(p => p.Id == id)
+                           .Select(p => new AllProductsForm
+                           {
+                               Id = p.Id,
+                               Name = p.Name,
+                               ImageURL = p.ImageURL,
+                               Price = p.Price,
+                               Description = p.Description,
+                               ProductType = p.ProductType
+                           })
+                           .FirstOrDefault();
+        }
+
         public async Task<IEnumerable<Product>> GetAll()
         {
             var result = await _dbContext.Products.ToListAsync();

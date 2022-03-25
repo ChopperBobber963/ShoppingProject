@@ -146,5 +146,17 @@ namespace ShoppingProject.Controllers
             await _productService.Delete(id);
             return RedirectToAction(nameof(All));
         }
+
+        public IActionResult Details(int id)
+        {
+            var product = _productService.Details(id);
+
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            return View(product);
+        }
     }
 }
