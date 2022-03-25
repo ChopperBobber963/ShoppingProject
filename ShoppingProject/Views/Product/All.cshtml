@@ -26,3 +26,12 @@
     </div>
   }
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <a asp-controller="Product" asp-action="All" asp-route-CurrentPage="@(Model.CurrentPage-1)"><<</a>
+    </div>
+    <div class="col-md-6">
+        <a asp-controller="Product" asp-action="All" asp-route-CurrentPage="@(Model.CurrentPage+1)">>></a>
+    </div>
+</div>

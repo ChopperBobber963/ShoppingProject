@@ -16,18 +16,29 @@ namespace ShoppingProject.Controllers
             _dbContext = dbContext;
         }
 
-        public async Task<IActionResult> All(string search)
+        public async Task<IActionResult> All(ProductListingModel query)
         {
+
+            int currPage = query.CurrentPage;
+            int pageSize = 3;
+            
+            if (currPage <= 0)
+            {
+                currPage = 1;
+            }
+            int skipCount = (currPage - 1) * pageSize;
             var productsQuery = _dbContext.Products.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search))
+            if (!string.IsNullOrWhiteSpace(query.Search))
             {
                 productsQuery = productsQuery.Where(p =>
-                p.Name.ToLower().Contains(search.ToLower()));
+                p.Name.ToLower().Contains(query.Search.ToLower()));
             }
 
             var products = productsQuery
                 .OrderByDescending(pt => pt.Id)
+                .Skip(skipCount)
+                .Take(pageSize)
                 .Select(p => new AllProductsForm
                 {
                     Id = p.Id,
@@ -42,8 +53,11 @@ namespace ShoppingProject.Controllers
             return View(new ProductListingModel
             {
                 Products = products,
-                Search = search
+                Search = query.Search,
+                CurrentPage = currPage
             });
+
+
         }
 
         public IActionResult Add()

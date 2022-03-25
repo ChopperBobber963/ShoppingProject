@@ -2,6 +2,7 @@
 using ShoppingProject.Data;
 using ShoppingProject.Data.Models;
 using ShoppingProject.Models;
+using PagedList;
 
 namespace ShoppingProject.Services
 {
