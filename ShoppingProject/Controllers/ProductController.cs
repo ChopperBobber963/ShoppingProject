@@ -27,6 +27,8 @@ namespace ShoppingProject.Controllers
                 currPage = 1;
             }
             int skipCount = (currPage - 1) * pageSize;
+
+            
             var productsQuery = _dbContext.Products.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Search))
