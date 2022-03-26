@@ -8,6 +8,21 @@
              <label asp-for="Search"></label>
              <input asp-for="Search" class="form-control" placeholder="PS4, Xbox One">
         </div>
+
+        <div class ="form-group col-md-4">
+            <div class="form-group">
+                <label asp-for="ProductType">Product Type</label>
+                <select asp-for="ProductType" class="form-control">
+                    <option>Video Games</option>
+                    <option>Books</option>
+                    <option>Smartphones</option>
+                    <option>Laptops</option>
+                    <option>Movies</option>
+                    <option>Music</option>
+                </select>
+                
+            </div>
+        </div>
     </div>
 </form>
 

@@ -20,7 +20,7 @@ namespace ShoppingProject.Controllers
         {
 
             int currPage = query.CurrentPage;
-            int pageSize = 3;
+            int pageSize = 4;
             
             if (currPage <= 0)
             {
@@ -33,6 +33,11 @@ namespace ShoppingProject.Controllers
             {
                 productsQuery = productsQuery.Where(p =>
                 p.Name.ToLower().Contains(query.Search.ToLower()));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.ProductType))
+            {
+                productsQuery = productsQuery.Where(p => p.ProductType == query.ProductType);
             }
 
             var products = productsQuery
@@ -50,10 +55,16 @@ namespace ShoppingProject.Controllers
                 })
                 .ToList();
 
+            var productCategories = _dbContext.Products
+                .Select(p => p.ProductType)
+                .Distinct()
+                .ToList();
+
             return View(new ProductListingModel
             {
                 Products = products,
                 Search = query.Search,
+                ProductTypes = productCategories,
                 CurrentPage = currPage
             });
 
