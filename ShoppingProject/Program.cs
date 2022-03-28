@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingProject.Data;
+using ShoppingProject.Data.Models;
 using ShoppingProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +20,7 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddScoped<IProductService, ProductService>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ShoppingDbContext>();
 builder.Services.AddControllersWithViews();
 

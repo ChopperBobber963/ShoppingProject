@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using ShoppingProject.Data;
 using ShoppingProject.Data.Models;
 using ShoppingProject.Models;
@@ -10,14 +11,26 @@ namespace ShoppingProject.Controllers
     {
         private readonly IProductService _productService;
         private readonly ShoppingDbContext _dbContext;
-        public ProductController(IProductService productService, ShoppingDbContext dbContext)
+        private readonly UserManager<User> userManager;
+
+        public ProductController(IProductService productService, ShoppingDbContext dbContext, UserManager<User> userManager)
         {
             _productService = productService;
             _dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> All(ProductListingModel query)
         {
+
+            ////Get the currently Logged-in User and all its properties - Id, Products, ProductsId, Wishlist, Wishlist Id
+            //var user = await userManager.GetUserAsync(User);
+
+            ////Get the wishlist of the logged-in user
+            //var wishlist = _dbContext.Wishlists.Where(w => w.Products == user.Wishlist.Products);
+
+            ////Get the products of the logged-in user
+            //var userProducts = _dbContext.Products.Where(p => p.UserId == user.Id);
 
             int currPage = query.CurrentPage;
             int pageSize = 4;

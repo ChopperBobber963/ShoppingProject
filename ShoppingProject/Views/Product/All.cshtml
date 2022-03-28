@@ -2,14 +2,14 @@
 @{
     ViewData["Title"] = "All";
 }
-<form method = "get">
-    <div class = "row mb-5">
-        <div class = "form-group col-md-4">
-             <label asp-for="Search"></label>
-             <input asp-for="Search" class="form-control" placeholder="PS4, Xbox One">
+<form method="get">
+    <div class="row mb-5">
+        <div class="form-group col-md-4">
+            <label asp-for="Search"></label>
+            <input asp-for="Search" class="form-control" placeholder="PS4, Xbox One">
         </div>
 
-        <div class ="form-group col-md-4">
+        <div class="form-group col-md-4">
             <div class="form-group">
                 <label asp-for="ProductType">Product Type</label>
                 <select asp-for="ProductType" class="form-control">
@@ -20,26 +20,27 @@
                     <option>Movies</option>
                     <option>Music</option>
                 </select>
-                
+
             </div>
         </div>
     </div>
 </form>
 
-<div class = "row">
-  @foreach(var product in Model.Products)
-  {
-    <div class="card" style="width: 18rem;">
-    <img src="@product.ImageURL" class="card-img-top" alt="@product.Name - @product.Price (@product.ProductType")>
-    <div class="card-body text-center">
-    <h5 class="card-title text-center">@product.Name</h5>
-    <p class="card-text">@product.Description</p>
-    <a asp-controller="Product" asp-action= "Details" asp-route-id=@product.Id class="btn btn-primary">$@product.Price</a>
-    <a asp-controller="Product" asp-action= "Edit" asp-route-id=@product.Id class="btn btn-warning">Edit</a>
-    <a asp-controller="Product" asp-action= "Delete" asp-route-id=@product.Id class="btn btn-danger">Delete</a>
-    </div>
-    </div>
-  }
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="@product.ImageURL" class="card-img-top" alt="@product.Name - @product.Price (@product.ProductType" )>
+            <div class="card-body text-center">
+                <h5 class="card-title text-center">@product.Name</h5>
+                <p class="card-text">@product.Description</p>
+                <a asp-controller="Product" asp-action="Details" asp-route-id=@product.Id class="btn btn-primary">Details</a>
+                <a asp-controller="Product" asp-action="Edit" asp-route-id=@product.Id class="btn btn-warning">Edit</a>
+                <a asp-controller="Product" asp-action="Delete" asp-route-id=@product.Id class="btn btn-danger">Delete</a>
+                <p class="card-text">$@product.Price</p>
+            </div>
+        </div>
+    }
 </div>
 
 <div class="row">

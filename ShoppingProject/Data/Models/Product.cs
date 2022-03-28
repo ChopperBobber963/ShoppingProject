@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShoppingProject.Data.Models
 {
@@ -22,5 +23,6 @@ namespace ShoppingProject.Data.Models
         public string ImageURL { get; set; }
 
         public string ProductType { get; set; }
+
     }
 }

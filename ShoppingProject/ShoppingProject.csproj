@@ -17,4 +17,8 @@
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

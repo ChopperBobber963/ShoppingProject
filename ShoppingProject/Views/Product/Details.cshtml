@@ -6,13 +6,20 @@
 
 <div class="col-md-4 text-center rounded mx-auto d-block">
     <div class="card mb-4 bgcolor-gray border-none">
-        <img src="@Model.ImageURL" class="card-img-top" alt="@Model.Name">
+        <img asp-for="@Model.ImageURL" src="@Model.ImageURL" class="card-img-top" alt="@Model.Name">
         <div class="card-body">
-            <h5 class="card-title text-center">@Model.Name</h5>
-            <p class="card-text text-center">$@Model.Price</p>
+            <h5 asp-for="@Model.Name" class="card-title text-center">@Model.Name</h5>
+            <p asp-for="@Model.Price" class="card-text text-center">Price: $@Model.Price</p>
+            <p asp-for="@Model.ProductType" class="card-text text-center">Category: @Model.ProductType</p>
+        </div>
+        <div class="card mb-2 mt-2">
+            <form>
+                <input asp-action="AddToWishlist" asp-controller="Wishlist" class="btn btn-outline-success" type="submit" value="Add to Wishlist" />
+                <input asp-for="@Model.Id" hidden />
+            </form>
         </div>
     </div>
 </div>
 <div class="text-center mb-3">
-    <SPAN STYLE="font-size:18.0pt">@Model.Description</span>
+    <span asp-for="@Model.Description" STYLE="font-size:18.0pt">@Model.Description</span>
 </div>
