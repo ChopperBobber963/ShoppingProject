@@ -27,12 +27,12 @@ namespace ShoppingProject.Controllers
         {
             return View();
         }
-
-        public async Task<IActionResult> AddToWishlist([FromForm]AllProductsForm product)
+        [HttpPost]
+        public async Task<IActionResult> AddToWishlist(AllProductsForm product)
         {
             var user = await userManager.GetUserAsync(User);
 
-            Wishlist? wishlist = _dbContext.Wishlists
+            var wishlist = _dbContext.Wishlists
              .FirstOrDefault(w => user.Id == w.UserId);
 
             if (!ModelState.IsValid)
@@ -57,7 +57,7 @@ namespace ShoppingProject.Controllers
                     Id = product.Id,
                     UserId = user.Id,
                 };
-                _dbContext.Wishlists.Add(wishlist);
+              
             }
 
             wishlist.Products.Add(newProduct);
