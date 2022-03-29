@@ -13,9 +13,13 @@
             <p asp-for="@Model.ProductType" class="card-text text-center">Category: @Model.ProductType</p>
         </div>
         <div class="card mb-2 mt-2">
-            <form>
-                <input asp-action="AddToWishlist" asp-controller="Wishlist" class="btn btn-outline-success" type="submit" value="Add to Wishlist" />
+            <form method="post" asp-action="AddToWishlist"> 
+                <input asp-action="AddToWishlist" asp-controller="Wishlist" asp-route-id ="@Model.Id" class="btn btn-outline-success" type="submit" value="Add to Wishlist" />
                 <input asp-for="@Model.Id" hidden />
+                <input asp-for="@Model.Name" hidden />
+                <input asp-for="@Model.ImageURL" hidden />
+                <input asp-for="@Model.Description" hidden />
+                <input asp-for="@Model.ProductType" hidden />
             </form>
         </div>
     </div>

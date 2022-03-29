@@ -1,4 +1,6 @@
-﻿namespace ShoppingProject.Models
+﻿using ShoppingProject.Data.Models;
+
+namespace ShoppingProject.Models
 {
     public class AllProductsForm
     {
@@ -13,5 +15,7 @@
         public string ProductType { get; set; }
 
         public string Description { get; set; }
+
+        public IEnumerable<Product> Products { get; set; } = new List<Product>();
     }
 }
