@@ -1,2 +1,2 @@
 # ShoppingProject
-A shoping site inspired by sites such as Ozone.bg and serves as a SoftUni Project for the ASP.NET course.
+A shoping site inspired by sites such as Ozone.bg and it will have basic functionality and admin functionality.
