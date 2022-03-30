@@ -23,9 +23,9 @@ namespace ShoppingProject.Controllers
             
         }
 
-        public IActionResult Index()
+        public IActionResult Index(UserViewModel model)
         {
-            return View();
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> AddToWishlist(AllProductsForm product)
@@ -54,14 +54,15 @@ namespace ShoppingProject.Controllers
             {
                 wishlist = new Wishlist
                 {
-                    Id = product.Id,
                     UserId = user.Id,
                 };
-              
+                _dbContext.Add(wishlist);
             }
 
             wishlist.Products.Add(newProduct);
-            _dbContext.SaveChanges();
+
+            _dbContext.Wishlists.Update(wishlist);
+            await _dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
 

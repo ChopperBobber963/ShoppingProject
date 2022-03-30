@@ -1,27 +1,33 @@
-﻿@using ShoppingProject.Data.Models;
-@model UserViewModel
+﻿@model UserViewModel
 
 @{
     ViewData["Title"] = "Wishlist";
 }
-
+<div >@Model.Wishlist.Id</div>
 <table class="table">
-  <thead>
-    <tr>
-      
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Product Type</th>
-    </tr>
-  </thead>
-  <tbody>
-        @foreach(var item in Model.Wishlist.Products)
+    <thead>
+        <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Product Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Wishlist.Products)
         {
             <tr>
-                <td class= "align-middle">@item.Name</td>
-                <td class= "align-middle">@item.Price</td>
-                <td class= "align-middle">@item.ProductType</td>
+                <td class="align-middle">@item.Name</td>
+                <td class="align-middle">@item.Price</td>
+                <td class="align-middle">@item.ProductType</td>
             </tr>
         }
     </tbody>
+    @*<tbody>
+        <tr>
+            <td class = "align-middle"></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>*@
 </table>

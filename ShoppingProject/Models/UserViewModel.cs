@@ -6,6 +6,6 @@ namespace ShoppingProject.Models
     {
         public int Id { get; set; }
 
-        public Wishlist Wishlist { get; set; }
+        public Wishlist Wishlist { get; set; } = new Wishlist();
     }
 }
