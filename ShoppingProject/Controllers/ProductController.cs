@@ -20,7 +20,7 @@ namespace ShoppingProject.Controllers
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> All(ProductListingModel query)
+        public IActionResult All(ProductListingModel query)
         {
 
             ////Get the currently Logged-in User and all its properties - Id, Products, ProductsId, Wishlist, Wishlist Id
@@ -86,11 +86,13 @@ namespace ShoppingProject.Controllers
 
         }
         
+        //Get Method
         public IActionResult Add()
         {
             return View();
         }
 
+        //Adds products to the Database 
         [HttpPost]
         public IActionResult Add(AddProductForm product)
         {
@@ -112,6 +114,7 @@ namespace ShoppingProject.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        //GETS the product id and gives the user the option to change its attributes 
         public async Task<IActionResult> Edit(int id)
         {
             var productDetails = await _productService.GetById(id);
@@ -135,6 +138,7 @@ namespace ShoppingProject.Controllers
             return View(productForm);
         }
 
+        //Post Method that updates the DB
         [HttpPost]
         public async Task<IActionResult> Edit(AllProductsForm product)
         {

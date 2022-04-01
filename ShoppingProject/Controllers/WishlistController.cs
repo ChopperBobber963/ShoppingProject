@@ -27,8 +27,14 @@ namespace ShoppingProject.Controllers
         {
             var user = await userManager.GetUserAsync(User);
 
+            if (user.Wishlist == null)
+            {
+                user.Wishlist = new Wishlist();
+            }
+
             return View(new UserViewModel(user.Id, user.Wishlist));
         }
+
         [HttpPost]
         public async Task<IActionResult> AddToWishlist(AllProductsForm product)
         {
