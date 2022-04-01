@@ -20,7 +20,7 @@ namespace ShoppingProject.Controllers.Api
         [HttpGet]
         public IEnumerable GetProduct()
         {
-            return this.data.Products.ToList();
+            return data.Products;
         }
 
         [HttpGet]
