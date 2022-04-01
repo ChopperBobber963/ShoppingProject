@@ -6,6 +6,12 @@ namespace ShoppingProject.Models
     {
         public int Id { get; set; }
 
-        public Wishlist Wishlist { get; set; } = new Wishlist();
+        public virtual Wishlist Wishlist { get; set; }
+
+        public UserViewModel(int id, Wishlist wishlist)
+        {
+            Id = id;
+            Wishlist = wishlist;
+        }
     }
 }

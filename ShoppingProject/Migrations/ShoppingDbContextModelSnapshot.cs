@@ -159,6 +159,21 @@ namespace ShoppingProject.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProductWishlist", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WishlistsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "WishlistsId");
+
+                    b.HasIndex("WishlistsId");
+
+                    b.ToTable("ProductWishlist", (string)null);
+                });
+
             modelBuilder.Entity("ShoppingProject.Data.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -191,14 +206,9 @@ namespace ShoppingProject.Migrations
                     b.Property<int?>("ShoppingCartId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WishlistId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ShoppingCartId");
-
-                    b.HasIndex("WishlistId");
 
                     b.ToTable("Products", (string)null);
                 });
@@ -360,15 +370,26 @@ namespace ShoppingProject.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductWishlist", b =>
+                {
+                    b.HasOne("ShoppingProject.Data.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShoppingProject.Data.Models.Wishlist", null)
+                        .WithMany()
+                        .HasForeignKey("WishlistsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ShoppingProject.Data.Models.Product", b =>
                 {
                     b.HasOne("ShoppingProject.Data.Models.ShoppingCart", null)
                         .WithMany("Products")
                         .HasForeignKey("ShoppingCartId");
-
-                    b.HasOne("ShoppingProject.Data.Models.Wishlist", null)
-                        .WithMany("Products")
-                        .HasForeignKey("WishlistId");
                 });
 
             modelBuilder.Entity("ShoppingProject.Data.Models.ShoppingCart", b =>
@@ -405,11 +426,6 @@ namespace ShoppingProject.Migrations
 
                     b.Navigation("Wishlist")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ShoppingProject.Data.Models.Wishlist", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

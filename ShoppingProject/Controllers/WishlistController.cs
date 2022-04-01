@@ -23,9 +23,11 @@ namespace ShoppingProject.Controllers
             
         }
 
-        public IActionResult Index(UserViewModel model)
+        public async Task<IActionResult> Index()
         {
-            return View(model);
+            var user = await userManager.GetUserAsync(User);
+
+            return View(new UserViewModel(user.Id, user.Wishlist));
         }
         [HttpPost]
         public async Task<IActionResult> AddToWishlist(AllProductsForm product)
@@ -35,20 +37,22 @@ namespace ShoppingProject.Controllers
             var wishlist = _dbContext.Wishlists
              .FirstOrDefault(w => user.Id == w.UserId);
 
+
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
 
-            var newProduct = new Product
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                ImageURL = product.ImageURL,
-                Price = product.Price,
-                ProductType = product.ProductType
-            };
+            var savedProduct = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
+            //var newProduct = new Product
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Description = product.Description,
+            //    ImageURL = product.ImageURL,
+            //    Price = product.Price,
+            //    ProductType = product.ProductType
+            //};
 
             if (wishlist == null)
             {
@@ -59,9 +63,8 @@ namespace ShoppingProject.Controllers
                 _dbContext.Add(wishlist);
             }
 
-            wishlist.Products.Add(newProduct);
-
-            _dbContext.Wishlists.Update(wishlist);
+            wishlist.Products.Add(savedProduct);
+            
             await _dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));

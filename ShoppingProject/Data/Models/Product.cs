@@ -24,5 +24,7 @@ namespace ShoppingProject.Data.Models
 
         public string ProductType { get; set; }
 
+        public virtual ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
+
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ShoppingProject.Data.Models;
+using ShoppingProject.Models;
 
 namespace ShoppingProject.Data
 {
@@ -32,9 +33,15 @@ namespace ShoppingProject.Data
                .WithOne(u => u.User)
                .HasForeignKey<ShoppingCart>(x => x.UserId);
 
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Wishlists)
+                .WithMany(w => w.Products);
+
 
             base.OnModelCreating(modelBuilder);
 
         }
+
+        
     }
 }

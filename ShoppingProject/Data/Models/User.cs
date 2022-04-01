@@ -7,8 +7,8 @@ namespace ShoppingProject.Data.Models
     public class User : IdentityUser<int>
     {
         [Required]
-        public Wishlist Wishlist { get; set; } = new Wishlist();
+        public virtual Wishlist Wishlist { get; set; }
 
-        public ShoppingCart ShoppingCart { get; set; }
+        public virtual ShoppingCart ShoppingCart { get; set; }
     }
 }
