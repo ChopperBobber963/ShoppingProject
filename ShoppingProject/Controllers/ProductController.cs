@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingProject.Data;
 using ShoppingProject.Data.Models;
@@ -19,7 +20,7 @@ namespace ShoppingProject.Controllers
             _dbContext = dbContext;
             this.userManager = userManager;
         }
-
+        [AllowAnonymous]
         public IActionResult All(ProductListingModel query)
         {
 
@@ -191,6 +192,7 @@ namespace ShoppingProject.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             var product = _productService.Details(id);
