@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ShoppingProject.Data;
+using System.ComponentModel.DataAnnotations;
 using static ShoppingProject.Data.DataConstants;
 namespace ShoppingProject.Models
 {
@@ -8,12 +9,12 @@ namespace ShoppingProject.Models
         public int Id { get; set; }
          
         [Required]
-        [StringLength(ProductNameMaxLength,
+        [StringLength(DataConstants.Product.ProductNameMaxLength,
             MinimumLength = 3,
             ErrorMessage = "{0} must be between {2} and {1} characters long")]
         public string Name { get; set; }
 
-        [StringLength(ProductDescriptionMaxLength, MinimumLength = 5,
+        [StringLength(DataConstants.Product.ProductDescriptionMaxLength, MinimumLength = 5,
             ErrorMessage = "{0} must be between {2} and {1} characters long")]
         public string Description { get; set; }
 

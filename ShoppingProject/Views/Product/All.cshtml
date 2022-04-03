@@ -1,4 +1,6 @@
-﻿@model ProductListingModel
+﻿@inject SignInManager<User> SignInManager;
+@inject UserManager<User> UserManager;
+@model ProductListingModel
 @{
     ViewData["Title"] = "All";
 }
@@ -27,6 +29,10 @@
     </div>
 </form>
 
+
+
+
+
 <div class="row">
     @foreach (var product in Model.Products)
     {
@@ -36,13 +42,17 @@
                 <h5 class="card-title text-center">@product.Name</h5>
                 <p class="card-text">@product.Description</p>
                 <a asp-controller="Product" asp-action="Details" asp-route-id=@product.Id class="btn btn-primary">Details</a>
-                <a asp-controller="Product" asp-action="Edit" asp-route-id=@product.Id class="btn btn-warning">Edit</a>
-                <a asp-controller="Product" asp-action="Delete" asp-route-id=@product.Id class="btn btn-danger">Delete</a>
+                @if (User.IsInRole(DataConstants.Role.Administrator))
+                {
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id=@product.Id class="btn btn-warning">Edit</a>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id=@product.Id class="btn btn-danger">Delete</a>
+                }
                 <p class="card-text">$@product.Price</p>
             </div>
         </div>
     }
 </div>
+
 
 <div class="row">
     <div class="col-md-6">

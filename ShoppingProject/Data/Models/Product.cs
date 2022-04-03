@@ -10,10 +10,10 @@ namespace ShoppingProject.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(ProductNameMaxLength)]
+        [MaxLength(DataConstants.Product.ProductNameMaxLength)]
         public string Name { get; set; }
 
-        [MaxLength(ProductDescriptionMaxLength)]
+        [MaxLength(DataConstants.Product.ProductDescriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]

@@ -94,6 +94,7 @@ namespace ShoppingProject.Controllers
         }
 
         //Adds products to the Database 
+        [Authorize(Roles = DataConstants.Role.Administrator)]
         [HttpPost]
         public IActionResult Add(AddProductForm product)
         {
@@ -140,6 +141,7 @@ namespace ShoppingProject.Controllers
         }
 
         //Post Method that updates the DB
+        [Authorize(Roles = DataConstants.Role.Administrator)]
         [HttpPost]
         public async Task<IActionResult> Edit(AllProductsForm product)
         {
@@ -182,6 +184,7 @@ namespace ShoppingProject.Controllers
             return View(gosho);
         }
 
+        [Authorize(Roles = DataConstants.Role.Administrator)]
         [HttpPost("[action]")]
         public async Task<IActionResult> DeleteConfirmed([FromForm] int id)
         {
