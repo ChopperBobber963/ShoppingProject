@@ -34,7 +34,7 @@ namespace ShoppingProject.Controllers
             //var userProducts = _dbContext.Products.Where(p => p.UserId == user.Id);
 
             int currPage = query.CurrentPage;
-            int pageSize = 4;
+            int pageSize = 8;
             
             if (currPage <= 0)
             {

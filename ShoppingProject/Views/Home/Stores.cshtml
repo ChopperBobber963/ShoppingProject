@@ -1,0 +1,30 @@
+﻿@model StoresListingModel
+@{
+    ViewData["Title"] = "Stores";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">City</th>
+            <th scope="col">Address</th>
+            <th scope="col">Work Hours</th>
+            <th scope="col">Closing Hours</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model.StoresDisplays)
+        {
+            <tr>
+                <td class="align-middle">@store.City</td>
+                <td class="align-middle">@store.Address</td>
+                <td class="align-middle">@store.WorkHours</td>
+                <td class="align-middle">@store.ClosingHours</td>
+                <td class="align-middle">@store.Details</td>
+            </tr>
+        }
+    </tbody>
+   
+</table>

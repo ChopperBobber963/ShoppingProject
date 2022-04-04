@@ -3,6 +3,15 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (User.IsInRole(DataConstants.Role.Administrator))
+    {
+        <h1 class="display-4">Welcome Admin</h1>
+    }
+
+    else
+    {
+        <h1 class="display-4">Welcome</h1>
+    }
+    <p>Learn about <a href="https://localhost:7268/Product/All">our products</a>.</p>
+    <p>Learn about <a href="https://localhost:7268/Home/Stores">our store location</a>.</p>
 </div>

@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ShoppingProject.Data.Models
+﻿namespace ShoppingProject.Models
 {
-    public class Store
+    public class StoreDisplay
     {
-        [Key]
         public int Id { get; set; }
 
         public string City { get; set; }

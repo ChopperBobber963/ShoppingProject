@@ -40,7 +40,7 @@
             <img src="@product.ImageURL" class="card-img-top" alt="@product.Name - @product.Price (@product.ProductType" )>
             <div class="card-body text-center">
                 <h5 class="card-title text-center">@product.Name</h5>
-                <p class="card-text">@product.Description</p>
+                
                 <a asp-controller="Product" asp-action="Details" asp-route-id=@product.Id class="btn btn-primary">Details</a>
                 @if (User.IsInRole(DataConstants.Role.Administrator))
                 {

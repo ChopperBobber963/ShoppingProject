@@ -12,6 +12,9 @@ namespace ShoppingProject.Data
 
         public DbSet<Wishlist> Wishlists { get; set; }
 
+        public DbSet<Store> Stores { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         public DbSet<User> User{ get; set; }
         public ShoppingDbContext(DbContextOptions<ShoppingDbContext> options)

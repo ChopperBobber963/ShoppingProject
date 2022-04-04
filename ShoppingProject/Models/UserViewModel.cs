@@ -8,6 +8,8 @@ namespace ShoppingProject.Models
 
         public virtual Wishlist Wishlist { get; set; }
 
+        public virtual ShoppingCart ShoppingCart { get; set; }  
+
         public UserViewModel(int id, Wishlist wishlist)
         {
             Id = id;
