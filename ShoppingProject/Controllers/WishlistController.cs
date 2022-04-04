@@ -32,7 +32,7 @@ namespace ShoppingProject.Controllers
                 user.Wishlist = new Wishlist();
             }
 
-            return View(new UserViewModel(user.Id, user.Wishlist));
+            return View(new UserViewModel(user.Id, user.Wishlist, user.ShoppingCart));
         }
 
         [HttpPost]
@@ -77,6 +77,36 @@ namespace ShoppingProject.Controllers
 
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromWishlist(int id)
+        {
+            var user = await userManager.GetUserAsync(User);
+
+            var wishlist = _dbContext.Wishlists.FirstOrDefault(w => w.User.Id == user.Id);
+            
+            if (wishlist == null)
+            {
+                wishlist = new Wishlist
+                {
+                    UserId = user.Id,
+                };
+
+            }
+
+            var savedProduct = wishlist.Products.FirstOrDefault(p => p.Id == id);
+
+            if (savedProduct == null)
+            {
+                return NotFound();
+            }
+         
+
+            wishlist.Products.Remove(savedProduct);
+
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }

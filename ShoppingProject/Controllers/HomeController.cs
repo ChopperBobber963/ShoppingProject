@@ -32,7 +32,7 @@ namespace ShoppingProject.Controllers
         {
             var storeQuery = dbContext.Stores.AsQueryable();
 
-            var stores = storeQuery.OrderByDescending(s => s.Id)
+            var stores = storeQuery.OrderBy(s => s.City)
                 .Select(s => new StoreDisplay
                 {
                     Id = s.Id,

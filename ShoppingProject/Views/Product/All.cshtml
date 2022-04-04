@@ -36,7 +36,7 @@
 <div class="row">
     @foreach (var product in Model.Products)
     {
-        <div class="card" style="width: 18rem;">
+        <div class="card mb-2 mx-2" style="width: 18rem;">
             <img src="@product.ImageURL" class="card-img-top" alt="@product.Name - @product.Price (@product.ProductType" )>
             <div class="card-body text-center">
                 <h5 class="card-title text-center">@product.Name</h5>

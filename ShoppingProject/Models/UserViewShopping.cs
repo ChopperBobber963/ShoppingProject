@@ -2,20 +2,18 @@
 
 namespace ShoppingProject.Models
 {
-    public class UserViewModel
+    public class UserViewShopping
     {
         public int Id { get; set; }
 
-        public virtual Wishlist Wishlist { get; set; }
-
         public virtual ShoppingCart ShoppingCart { get; set; }
 
-        public UserViewModel(int id, Wishlist wishlist, ShoppingCart shoppingCart)
+        public UserViewShopping(int id, ShoppingCart shoppingCart)
         {
             Id = id;
-            Wishlist = wishlist;
             ShoppingCart = shoppingCart;
-            
+
         }
+
     }
 }

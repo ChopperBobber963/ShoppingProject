@@ -1,0 +1,27 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<h1 class="heading-margin text-center">My Cart</h1>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Product Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ShoppingCart.Products)
+        {
+            <tr>
+                <td class="align-middle">@item.Name</td>
+                <td class="align-middle">@item.Price</td>
+                <td class="align-middle">@item.ProductType</td>             
+            </tr>
+        }
+    </tbody>
+   
+</table>

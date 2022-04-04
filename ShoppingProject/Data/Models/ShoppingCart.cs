@@ -8,7 +8,7 @@ namespace ShoppingProject.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
     
         [ForeignKey(nameof(User))]

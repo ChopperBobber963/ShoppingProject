@@ -40,6 +40,10 @@ namespace ShoppingProject.Data
                 .HasMany(p => p.Wishlists)
                 .WithMany(w => w.Products);
 
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.ShoppingCarts)
+                .WithMany(c => c.Products);
+
 
             base.OnModelCreating(modelBuilder);
 

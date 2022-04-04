@@ -26,5 +26,7 @@ namespace ShoppingProject.Data.Models
 
         public virtual ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
 
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; } = new List<ShoppingCart>();    
+
     }
 }
