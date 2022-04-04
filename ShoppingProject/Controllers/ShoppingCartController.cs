@@ -28,5 +28,38 @@ namespace ShoppingProject.Controllers
 
             return View(new UserViewModel(user.Id, user.Wishlist, user.ShoppingCart));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(AllProductsForm product)
+        {
+            var user = await userManager.GetUserAsync(User);
+
+            var shoppingCart = dbContext.ShoppingCarts
+             .FirstOrDefault(w => user.Id == w.UserId);
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+
+            var savedProduct = dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
+            
+            if (shoppingCart == null)
+            {
+                shoppingCart = new ShoppingCart
+                {
+                    UserId = user.Id,
+                };
+                dbContext.Add(shoppingCart);
+            }
+
+            shoppingCart.Products.Add(savedProduct);
+
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }

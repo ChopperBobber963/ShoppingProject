@@ -21,6 +21,15 @@
                 <input asp-for="@Model.Description" hidden />
                 <input asp-for="@Model.ProductType" hidden />
             </form>
+             <form method="post" asp-action="AddToCart"> 
+                <input asp-action="AddToCart" asp-controller="ShoppingCart" asp-route-id ="@Model.Id" class="btn btn-outline-warning" type="submit" value="Add to Cart" />
+                <input asp-for="@Model.Id" hidden />
+                <input asp-for="@Model.Name" hidden />
+                <input asp-for="@Model.ImageURL" hidden />
+                <input asp-for="@Model.Description" hidden />
+                <input asp-for="@Model.ProductType" hidden />
+            </form>
+
         </div>
     </div>
 </div>
