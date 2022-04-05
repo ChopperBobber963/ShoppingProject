@@ -69,6 +69,11 @@ namespace ShoppingProject.Controllers
                 _dbContext.Add(wishlist);
             }
 
+            if (savedProduct == null)
+            {
+                return NotFound();
+            }
+
             wishlist.Products.Add(savedProduct);
             
             await _dbContext.SaveChangesAsync();

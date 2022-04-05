@@ -19,7 +19,13 @@
             <tr>
                 <td class="align-middle">@item.Name</td>
                 <td class="align-middle">@item.Price</td>
-                <td class="align-middle">@item.ProductType</td>             
+                <td class="align-middle">@item.ProductType</td>  
+                <td class="align-middle">
+                    <form method="post" asp-controller="ShoppingCart" asp-action="RemoveFromCart"
+                      asp-route-id=@item.Id>
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                    </td>
             </tr>
         }
     </tbody>

@@ -54,7 +54,44 @@ namespace ShoppingProject.Controllers
                 dbContext.Add(shoppingCart);
             }
 
+            if (savedProduct == null)
+            {
+                return NotFound();
+            }
+
             shoppingCart.Products.Add(savedProduct);
+
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFromCart(int id)
+        {
+            var user = await userManager.GetUserAsync(User);
+
+            var cart = dbContext.ShoppingCarts.FirstOrDefault(w => w.User.Id == user.Id);
+
+            if (cart == null)
+            {
+                cart = new ShoppingCart
+                {
+                    UserId = user.Id
+                };
+
+            }
+
+            var savedProduct = cart.Products.FirstOrDefault(p => p.Id == id);
+
+            if (savedProduct == null)
+            {
+                return NotFound();
+            }
+
+
+            cart.Products.Remove(savedProduct);
 
             await dbContext.SaveChangesAsync();
 
