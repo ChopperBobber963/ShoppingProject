@@ -31,3 +31,39 @@
     </tbody>
    
 </table>
+
+<div class="text-center">
+    <div class="btn-group">
+        <div id ="paypal-btn"></div>
+        <a class ="btn btn-outline-info" asp-action="All" asp-controller="Product">Add More Items</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://www.paypalobjects.com/api/checkout.js" ></script>
+    
+   <script>
+       paypal.Button.render({
+           env:'sandbox',
+           client: {
+               sandbox:'AdHZcOJcqemHGtRFIBFh6ebTH7s3USQc6yYFfN7LM3RJ5I_dYn81BrFYAB-qVkWFjQk9tRDBx8Y8Trf8'
+           },
+
+           locale: 'en_US',
+           style:{
+               size:'small',
+               color:'gold',
+               shape:'pill'
+           },
+           commit:true,
+           payment:function(data,action){
+               console.log("payment set up");
+           },
+
+           onAuthorize: function(data,action){
+               console.log("payment executed");
+           }
+
+       }, '#paypal-btn');
+   </script>
+}
