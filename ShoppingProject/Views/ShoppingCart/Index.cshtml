@@ -39,10 +39,14 @@
     </div>
 </div>
 
+
 @section Scripts{
     <script src="https://www.paypalobjects.com/api/checkout.js" ></script>
     
    <script>
+
+      
+
        paypal.Button.render({
            env:'sandbox',
            client: {
@@ -57,7 +61,14 @@
            },
            commit:true,
            payment:function(data,action){
-               console.log("payment set up");
+               return actions.payment.create({
+                   transactions: [{
+                       amount:{
+                           total:1,
+                           currency: 'USD'
+                       }
+                   }]
+               });
            },
 
            onAuthorize: function(data,action){

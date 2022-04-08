@@ -35,15 +35,13 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    // Password settings.
+    
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 5;
     
-
-    // Lockout settings.
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
     options.Lockout.MaxFailedAccessAttempts = 8;
     options.Lockout.AllowedForNewUsers = true;

@@ -10,6 +10,7 @@ namespace ShoppingProject.Services
     {
         private readonly ShoppingDbContext _dbContext;
 
+        
         public ProductService(ShoppingDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -44,7 +45,7 @@ namespace ShoppingProject.Services
                            .FirstOrDefault();
         }
 
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<List<Product>> GetAll()
         {
             var result = await _dbContext.Products.ToListAsync();
             return result;

@@ -5,7 +5,8 @@ namespace ShoppingProject.Services
 {
     public interface IProductService
     {
-        Task <IEnumerable<Product>> GetAll();
+        // Cannot return null.
+        Task <List<Product>> GetAll();
 
         Task<Product> GetById(int id);
 

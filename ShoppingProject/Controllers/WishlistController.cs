@@ -85,9 +85,9 @@ namespace ShoppingProject.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveFromWishlist(int id)
         {
-            var user = await userManager.GetUserAsync(User);
+            User? user = await userManager.GetUserAsync(User);
 
-            var wishlist = _dbContext.Wishlists.FirstOrDefault(w => w.User.Id == user.Id);
+            Wishlist? wishlist = _dbContext.Wishlists.FirstOrDefault(w => w.User.Id == user.Id);
             
             if (wishlist == null)
             {
@@ -98,7 +98,7 @@ namespace ShoppingProject.Controllers
 
             }
 
-            var savedProduct = wishlist.Products.FirstOrDefault(p => p.Id == id);
+            Product? savedProduct = wishlist.Products.FirstOrDefault(p => p.Id == id);
 
             if (savedProduct == null)
             {

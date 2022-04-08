@@ -11,17 +11,13 @@ namespace ShoppingProject.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ShoppingDbContext _dbContext;
-        private readonly UserManager<User> userManager;
 
-        public ProductController(IProductService productService, ShoppingDbContext dbContext, UserManager<User> userManager)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
-            _dbContext = dbContext;
-            this.userManager = userManager;
         }
         [AllowAnonymous]
-        public IActionResult All(ProductListingModel query)
+        public async Task<IActionResult> All(ProductListingModel query)
         {
 
             ////Get the currently Logged-in User and all its properties - Id, Products, ProductsId, Wishlist, Wishlist Id
@@ -42,8 +38,8 @@ namespace ShoppingProject.Controllers
             }
             int skipCount = (currPage - 1) * pageSize;
 
-            
-            var productsQuery = _dbContext.Products.AsQueryable();
+            var allProducts = await _productService.GetAll();
+            var productsQuery = allProducts.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.Search))
             {
@@ -71,7 +67,8 @@ namespace ShoppingProject.Controllers
                 })
                 .ToList();
 
-            var productCategories = _dbContext.Products
+            allProducts = await _productService.GetAll();
+            var productCategories = allProducts
                 .Select(p => p.ProductType)
                 .Distinct()
                 .ToList();
@@ -93,7 +90,7 @@ namespace ShoppingProject.Controllers
             return View();
         }
 
-        //Adds products to the Database 
+        // Adds products to the Database 
         [Authorize(Roles = DataConstants.Role.Administrator)]
         [HttpPost]
         public IActionResult Add(AddProductForm product)
@@ -149,7 +146,8 @@ namespace ShoppingProject.Controllers
             {
                 return View(product);
             }
-            var productData = _dbContext.Products.Find(product.Id);
+
+            var productData = await _productService.GetById(product.Id);
 
             if (productData == null)
             {
