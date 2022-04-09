@@ -50,15 +50,7 @@ namespace ShoppingProject.Controllers
             }
 
             var savedProduct = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
-            //var newProduct = new Product
-            //{
-            //    Id = product.Id,
-            //    Name = product.Name,
-            //    Description = product.Description,
-            //    ImageURL = product.ImageURL,
-            //    Price = product.Price,
-            //    ProductType = product.ProductType
-            //};
+            
 
             if (wishlist == null)
             {

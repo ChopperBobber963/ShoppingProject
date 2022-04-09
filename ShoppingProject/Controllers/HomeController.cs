@@ -9,12 +9,12 @@ namespace ShoppingProject.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        
         private readonly ShoppingDbContext dbContext;
 
-        public HomeController(ILogger<HomeController> logger, ShoppingDbContext dbContext)
+        public HomeController(ShoppingDbContext dbContext)
         {
-            _logger = logger;
+            
             this.dbContext = dbContext;
         }
 
