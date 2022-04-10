@@ -38,9 +38,9 @@ namespace ShoppingProject.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToWishlist(AllProductsForm product)
         {
-            var user = await userManager.GetUserAsync(User);
+            User? user = await userManager.GetUserAsync(User);
 
-            var wishlist = _dbContext.Wishlists
+            Wishlist? wishlist = _dbContext.Wishlists
              .FirstOrDefault(w => user.Id == w.UserId);
 
 
@@ -49,7 +49,7 @@ namespace ShoppingProject.Controllers
                 return View(product);
             }
 
-            var savedProduct = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
+            Product? savedProduct = _dbContext.Products.FirstOrDefault(p => p.Id == product.Id);
             
 
             if (wishlist == null)

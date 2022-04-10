@@ -39,6 +39,22 @@ namespace ShoppingProject.Test
         }
 
         [Test]
+        public async Task PrivacyView_DisplaysPrivacyPage()
+        {
+            var options = new DbContextOptionsBuilder<ShoppingDbContext>()
+                
+                .Options;
+
+            var context = new ShoppingDbContext(options);
+
+            var controller = new HomeController(context);
+
+            var result = controller.Privacy();
+
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
+
+        [Test]
         public async Task Stores_DisplaysSingleStore_WhenDatabaseContainsSingleStore()
         {
             var options = new DbContextOptionsBuilder<ShoppingDbContext>()
